@@ -14,4 +14,6 @@ class Product < ApplicationRecord
     price + tax
   end
 
+  
+
 end

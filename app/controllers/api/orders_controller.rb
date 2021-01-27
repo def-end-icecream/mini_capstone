@@ -1,5 +1,12 @@
 class Api::OrdersController < ApplicationController
 
+  before_action :authenticate_user
+
+  def index
+    @orders = current_user.orders
+    render "index.json.jb"
+  end
+
   def create
     @order = Order.new(
       quantity: params[:quantity],
@@ -16,4 +23,12 @@ class Api::OrdersController < ApplicationController
     end
   end
 
+  def show
+    @order = current_user.orders.find(params[:id])
+    if @order
+      render "show.json.jb"
+    else
+      render json: {}, status: :unauthorized
+    end
+  end
 end

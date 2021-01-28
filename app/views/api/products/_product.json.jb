@@ -10,5 +10,6 @@
     total: number_to_currency(product.total)
   },
   supplier_name: product.supplier.name,
-  images: product.images
+  images: product.images,
+  categories: product.categories
 }

@@ -3,10 +3,11 @@ class Api::ProductsController < ApplicationController
   before_action :authenticate_admin, except: [:index, :show]
 
   def index
-    @products = Product
-      .title_search(params[:search])
-      .discounted(params[:discount])
-      .sorted(params[:sort], params[:sort_order])
+    @products = Product.all
+    # @products = Product
+    #   .title_search(params[:search])
+    #   .discounted(params[:discount])
+    #   .sorted(params[:sort], params[:sort_order])
     render "index.json.jb"
   end
 

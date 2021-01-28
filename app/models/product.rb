@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   has_many :images
   has_many :orders
   has_many :product_categories
+  has_many :categories, through: :product_categories
 
   validates :name, presence: true, uniqueness: true
   validates :price, numericality: { greater_than: 0 }

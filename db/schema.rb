@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_28_182933) do
+ActiveRecord::Schema.define(version: 2021_02_01_190327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carted_products", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "product_id"
+    t.integer "order_id"
+    t.integer "quantity"
+    t.string "status", default: "carted"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -29,8 +39,6 @@ ActiveRecord::Schema.define(version: 2021_01_28_182933) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "quantity"
-    t.integer "product_id"
     t.integer "user_id"
     t.decimal "subtotal", precision: 6, scale: 2
     t.decimal "tax", precision: 6, scale: 2
